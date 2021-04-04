@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+<body style="background-image:url('https://cdn.wallpapersafari.com/40/66/ihjpoz.jpg')">
+
+
+<nav th:replace="layouts :: navbar"></nav>
+
+<div class="container" style="position:fixed; bottom:70%; top:20%; left:20%; right:20%;
+">
+
+
+    <form action="/books/save" th:object="${book}" method="POST">
+<!--        <input type="text" placeholder="Title" th:field="${book.title}"><br><br>-->
+        <input style="border-radius: 7px; height:35px" type="text" placeholder="Title" name="title"><br><br>
+<!--        <input type="text" th:field="${book.author.fullName}" placeholder="Author Name"><br><br>-->
+        <input style="border-radius: 7px; height:35px" type="text" name="author.fullName" placeholder="Author Name"><br><br>
+        <input style="border-radius: 7px; height:35px" type="text" placeholder="Genre" th:field="${book.genre}"><br><br>
+
+        <select style="border-radius: 7px; height:35px" th:field="${book.stage}" name="stage" ><br><br>
+
+            <option th:value="WANT_TO_READ"> Want to read</option>
+            <option th:value="CURRENTLY_READING"> Currently reading</option>
+            <option th:value="ALREADY_READ">Already read</option>
+        </select>
+        <br><br>
+        <button class="btn btn-primary" type="submit">Add book</button>
+    </form>
+</div>
+</body>
+</html>

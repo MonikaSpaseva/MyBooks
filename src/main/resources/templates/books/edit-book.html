@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+<body style="background-image:url('https://cdn.wallpapersafari.com/53/98/IP9C3G.jpg')">
+
+
+<nav th:replace="layouts :: navbar"></nav>
+
+<div class="container" style="position:fixed; bottom:70%; top:20%; left:40%; right:20%;
+">
+
+
+    <form action="/books/update" th:object="${book}" method="POST">
+        <input hidden th:field="${book.id}">
+        <input style="border-radius: 7px; height:35px";   type="text" placeholder="Title"  th:field="${book.title}"><br><br>
+        <input style="border-radius: 7px; height:35px";  type="text" th:field="${book.author.fullName}" placeholder="Author Name"><br><br>
+        <input style="border-radius: 7px; height:35px";  type="text" placeholder="Genre" th:field="${book.genre}"><br><br>
+
+        <select style="border-radius: 7px; height:35px";  th:field="${book.stage}" name="stage"><br><br>
+
+            <option th:value="WANT_TO_READ"> Want to read</option>
+            <option th:value="CURRENTLY_READING"> Currently reading</option>
+            <option th:value="ALREADY_READ">Already read</option>
+        </select>
+        <br><br>
+        <span style="font-family: 'FontAwesome'; font-weight: normal; color:#DCDCDC"><i class="fal fa-star fa-lg"></i><i
+                class="fal fa-star fa-lg"></i><i class="fal fa-star fa-lg"></i><i class="fal fa-star fa-lg"></i><i
+                class="fal fa-star fa-lg"></i></span>
+
+        <br><br>
+        <button  class="btn btn-warning" type="submit">Update</button>
+    </form>
+
+
+</div>
+</body>
+</html>
