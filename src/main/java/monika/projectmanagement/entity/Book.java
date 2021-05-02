@@ -22,6 +22,9 @@ public class Book {
     @Column(name = "stage")
     private BookStatus stage;
 
+    @Column(name = "stars")
+    private Integer stars;
+
 
     public Book() {
     }
@@ -72,7 +75,11 @@ public class Book {
         this.stage = stage;
     }
 
+    public Integer getStars() {
+        return stars;
+    }
 
-
-
+    public void setStars(Integer stars) {
+        this.stars = stars;
+    }
 }

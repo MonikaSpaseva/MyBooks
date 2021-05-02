@@ -8,4 +8,5 @@ import java.util.List;
 public interface AuthorRepo extends CrudRepository<Author, Long> {
     @Override
     List<Author> findAll();
+
 }

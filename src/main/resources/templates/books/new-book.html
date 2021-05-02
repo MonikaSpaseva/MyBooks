@@ -3,17 +3,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="layouts :: header"></head>
-<body style="background-image:url('https://cdn.wallpapersafari.com/40/66/ihjpoz.jpg')">
+<body style="background-image:url('https://www.wallpapertip.com/wmimgs/7-79039_twin-peaks-wallpaper-iphone-x.jpg')">
 
 
 <nav th:replace="layouts :: navbar"></nav>
 
-<div class="container" style="position:fixed; bottom:70%; top:20%; left:20%; right:20%;
+<div class="container" style="position:fixed; bottom:70%; top:20%; left:35%; right:30%;
 ">
 
 
     <form action="/books/save" th:object="${book}" method="POST">
 <!--        <input type="text" placeholder="Title" th:field="${book.title}"><br><br>-->
+        <input style="border-radius: 7px; height:35px" type="file" placeholder="Upload a book cover" th:field="${book.cover}"><br><br>
         <input style="border-radius: 7px; height:35px" type="text" placeholder="Title" name="title"><br><br>
 <!--        <input type="text" th:field="${book.author.fullName}" placeholder="Author Name"><br><br>-->
         <input style="border-radius: 7px; height:35px" type="text" name="author.fullName" placeholder="Author Name"><br><br>
@@ -26,8 +27,14 @@
             <option th:value="ALREADY_READ">Already read</option>
         </select>
         <br><br>
-        <button class="btn btn-primary" type="submit">Add book</button>
+
+        <input style="border-radius: 7px; height:35px; width: 100px" placeholder="Grade 1-5" id="rating" name="stars">
+        <br><br>
+        <button class="btn btn-success" type="submit">Add book</button>
     </form>
 </div>
+
+<script type="text/javascript" th:src="@{/js/stars.js}"></script>
+
 </body>
 </html>

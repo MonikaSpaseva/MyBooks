@@ -1,6 +1,8 @@
 package monika.projectmanagement.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Author {
@@ -11,7 +13,9 @@ public class Author {
     private Long id;
     @Column(name = "full_name")
     private String fullName;
-
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "author_id")
+    private List<Book> authorBooks = new ArrayList<>();
     public Author() {
     }
 
@@ -35,5 +39,10 @@ public class Author {
         this.fullName = fullName;
     }
 
+    public void addBook(Book book){
+        if (book != null) {
+            authorBooks.add(book);
+        }
+    }
 
 }

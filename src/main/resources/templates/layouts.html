@@ -21,10 +21,14 @@
     <link rel="stylesheet" th:href="@{/css/formatting.css}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
 </head>
 
 
-<nav th:fragment = "navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav th:fragment = "navbar" class="navbar navbar-expand-lg navbar-dark bg-dark" style="font-weight:bold">
     <a class="navbar-brand" href="#"> My Books</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -44,14 +48,14 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/bookstage/wanttoread}">Want to read</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/stage}">Overview</a>
-            </li>
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" th:href="@{/stage}">Overview</a>-->
+<!--            </li>-->
 
             <li>
-                <form role="search" style="padding-left: 600px; height:20px;">
+                <form th:action="@{/}" method="get" role="search" style="padding-left: 600px; height:20px;">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" height="28px">
+                    <input type="text" class="form-control" id="bookSearch" name="keyword" placeholder="Search" height="28px">
                     <div class="input-group-btn">
                         <button type="submit" class="btn btn-default">
                             <span> <i class="fal fa-search" style="color:white; font-size:25px; font-family: 'FontAwesome'; font-weight: normal;
@@ -64,7 +68,7 @@
             <li>
                 <div class="input-group-btn" style="height:20px">
                    <a th:href="@{/books/new}"> <button type="submit" class="btn btn-default">
-                            <span> <i class="fas fa-book" style="color:#ff1493; font-size:25px; font-family: 'FontAwesome'; font-weight: normal;
+                            <span> <i class="fas fa-book" style=" color: white;font-size:25px; font-family: 'FontAwesome'; font-weight: normal;
   font-style: normal"> </i> </span>
                    </button></a>
                 </div>

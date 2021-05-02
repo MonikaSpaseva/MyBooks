@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="layouts :: header"></head>
-<body style="background-image:url('https://cdn.wallpapersafari.com/53/98/IP9C3G.jpg')">
+<body style="background-image:url('https://wallpapercave.com/wp/wp4982504.jpg')">
 
 
 <nav th:replace="layouts :: navbar"></nav>
@@ -21,20 +21,25 @@
         <select style="border-radius: 7px; height:35px";  th:field="${book.stage}" name="stage"><br><br>
 
             <option th:value="WANT_TO_READ"> Want to read</option>
-            <option th:value="CURRENTLY_READING"> Currently reading</option>
+            <option th:value="CURRENTLY_READING">Currently reading</option>
             <option th:value="ALREADY_READ">Already read</option>
         </select>
         <br><br>
-        <span style="font-family: 'FontAwesome'; font-weight: normal; color:#DCDCDC"><i class="fal fa-star fa-lg"></i><i
-                class="fal fa-star fa-lg"></i><i class="fal fa-star fa-lg"></i><i class="fal fa-star fa-lg"></i><i
-                class="fal fa-star fa-lg"></i></span>
+<!--        <span style="font-family: 'FontAwesome'; font-weight: normal; color:#DCDCDC"><i class="fal fa-star fa-lg"></i><i-->
+<!--                class="fal fa-star fa-lg"></i><i class="fal fa-star fa-lg"></i><i class="fal fa-star fa-lg"></i><i-->
+<!--                class="fal fa-star fa-lg"></i>-->
+<!--        </span>-->
+        <input style="border-radius: 7px; height:35px; width: 100px" placeholder="Grade 1-5" name="stars" th:field="${book.stars}">
+
+
 
         <br><br>
 
         <button  class="btn btn-warning" type="submit">Update</button>
     </form>
-
-
 </div>
+
+<script type="text/javascript" th:src="@{/js/stars.js}"></script>
+
 </body>
 </html>

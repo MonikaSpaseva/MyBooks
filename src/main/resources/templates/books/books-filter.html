@@ -1,0 +1,190 @@
+<!--<!DOCTYPE html>-->
+
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+
+<!--<head th:fragment="header">-->
+<!--    &lt;!&ndash; Required meta tags &ndash;&gt;-->
+<!--    <meta charset="utf-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+
+<!--    &lt;!&ndash; Bootstrap CSS &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"-->
+<!--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+
+<!--    <link rel="stylesheet" th:href="@{/css/formatting.css}">-->
+<!--    &lt;!&ndash;&ndash;&gt;-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">-->
+<!--    &lt;!&ndash;    &ndash;&gt;-->
+
+<!--    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>-->
+
+<!--    <link rel="stylesheet" th:href="@{/css/formatting.css}">-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>-->
+
+
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+
+
+<!--</head>-->
+
+
+<!--<nav th:fragment = "navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">-->
+<!--    <a class="navbar-brand" href="#"> My Books</a>-->
+<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--        <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+
+<!--    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">-->
+<!--        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
+<!--            <li class="nav-item active">-->
+<!--                <a class="nav-link" th:href="@{/}">All books</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" th:href="@{/bookstage/reading}">Currently reading</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" th:href="@{/bookstage/read}">Read</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" th:href="@{/bookstage/wanttoread}">Want to read</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" th:href="@{/stage}">Overview</a>-->
+<!--            </li>-->
+
+<!--            <li>-->
+<!--                    <div class="input-group" style="padding-left: 600px; height:20px">-->
+<!--                        <input type="text" class="form-control" id="bookSearch" name="keyword" placeholder="Search" height="28px">-->
+<!--&lt;!&ndash;                        <div class="input-group-btn">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <button type="submit" class="btn btn-default">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <span> <i class="fal fa-search" style="color:white; font-size:25px; font-family: 'FontAwesome'; font-weight: normal;&ndash;&gt;-->
+<!--&lt;!&ndash;  font-style: normal" ></i> </span>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--                    </div>-->
+
+<!--            </li>-->
+<!--            <li>-->
+<!--                <div class="input-group-btn" style="height:20px">-->
+<!--                    <a th:href="@{/books/new}"> <button type="submit" class="btn btn-default">-->
+<!--                            <span> <i class="fas fa-book" style="color:#ff1493; font-size:25px; font-family: 'FontAwesome'; font-weight: normal;-->
+<!--  font-style: normal"> </i> </span>-->
+<!--                    </button></a>-->
+<!--                </div>-->
+<!--            </li>-->
+
+<!--        </ul>-->
+<!--    </div>-->
+<!--</nav>-->
+
+
+
+
+<!--<body>-->
+
+
+<!--<div class="container" style="margin-top: 50px">-->
+<!--    <div class="col-md-10">-->
+<!--        <table class='table borderless' id="booksTable">-->
+<!--            <thead>-->
+<!--            <tr>-->
+
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+
+<!--            <tr th:each="aBook : ${books}">-->
+<!--                <td th:text="${aBook.id}"></td>-->
+<!--                <td>-->
+<!--                    &lt;!&ndash;                <canvas id="viewport" width="40px" height="50px">&ndash;&gt;-->
+<!--                    <img src="https://donrheem.com/wp-content/uploads/2016/11/Book-Placeholder.png" style="width: 40px; height:50px">-->
+<!--                    &lt;!&ndash;                </canvas>&ndash;&gt;-->
+<!--                </td>-->
+
+<!--                <td th:text="${aBook.title}"></td>-->
+<!--                <td th:text="${aBook.author.fullName}"></td>-->
+<!--                <td th:text="${aBook.genre}"></td>-->
+<!--                <td th:text="${aBook.stage.displayValue}"></td>-->
+<!--                <td th:number="${aBook.stars}" style="font-family: 'FontAwesome'; font-weight: normal; color:#DCDCDC">-->
+
+<!--                    <div th:switch = "${aBook.stars}">-->
+<!--                    <span style="color:yellow" th:case="5">-->
+<!--                        <i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i>-->
+<!--                    </span>-->
+<!--                        <span th:case="4">-->
+<!--                        <i style="color:yellow" class="fal fa-star"></i><i style="color:yellow" class="fal fa-star"></i><i style="color:yellow" class="fal fa-star"></i><i style="color:yellow" class="fal fa-star"></i><i class="fal fa-star"></i>-->
+<!--                    </span>-->
+<!--                        <span th:case="3">-->
+<!--                        <i style="color:yellow" class="fal fa-star"></i><i style="color:yellow" class="fal fa-star"></i><i style="color:yellow"  class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i>-->
+<!--                    </span>-->
+<!--                        <span th:case="2">-->
+<!--                        <i style="color:yellow" class="fal fa-star"></i><i style="color:yellow" class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i>-->
+<!--                    </span>-->
+<!--                        <span th:case="1">-->
+<!--                        <i style="color:yellow" class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i>-->
+<!--                    </span>-->
+<!--                        <span style="color:#DCDCDC" th:case="*">-->
+<!--                        <i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i>-->
+<!--                    </span>-->
+<!--                    </div>-->
+
+<!--                </td>-->
+<!--                <td><a th:href="@{/books/edit/{id}(id=${aBook.id})}"> <button type="submit" class="btn btn-default"><i class="fas fa-edit fa-lg" style="font-family: 'FontAwesome'; font-weight: normal; color:orange"></i></button></a></td>-->
+<!--                <td><a th:href="@{/books/delete/{id}(id=${aBook.id})}">-->
+<!--                    <button type="submit" class="btn btn-default"><i class="fas fa-trash fa-lg" style="font-family: 'FontAwesome'; font-weight: normal; color:#FF4500"></i></button>-->
+<!--                </a>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </div>-->
+
+
+<!--</div>-->
+<!--<script th:inline="javascript">-->
+
+<!--   /*<![CDATA[*/-->
+<!--    var books = /*[[${books}]]*/;-->
+<!--    /*]]>*/-->
+<!--    $('#bookSearch').on('keyup', function(){-->
+<!--     var value = $(this).val();-->
+
+<!--     //Get filtered employee list-->
+<!--     var data = FilterFunction(value, books);-->
+
+<!--     //Clear the table and rebuild using new filtered data-->
+<!--     rebuildTable(data)-->
+<!--   });-->
+
+<!--   function FilterFunction(value, data){-->
+<!--   var filteredData = [];-->
+<!--   for(var i = 0; i < data.length; i++){-->
+<!--    value = value.toLowerCase();-->
+<!--    var title = data[i].title.toLowerCase();-->
+<!--    var genre = data[i].genre.toLowerCase();-->
+<!--    var authorName = data[i].author.fullName.toLowerCase();-->
+
+<!--    if(title.includes(value) || genre.includes(value) || authorName.includes(value)){-->
+<!--      filteredData.push(data[i]);-->
+<!--    }-->
+<!--   }-->
+<!--   return filteredData;-->
+<!-- }-->
+
+<!-- function rebuildTable(data){-->
+<!--    var table = document.getElementById('booksTable')-->
+<!--    table.innerHTML=''-->
+<!--    for(var i = 0; i < data.length; i++){-->
+
+<!--    var row = `<tr>-->
+<!--                  <td>${data[i].title}</td>-->
+<!--                  <td>${data[i].genre}</td>-->
+<!--                 <td>${data[i].author.fullName}</td>-->
+<!--              </tr>`;-->
+<!--              table.innerHTML+=row;-->
+
+<!--    }-->
+<!-- }-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
