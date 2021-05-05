@@ -3,11 +3,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="layouts :: header"></head>
-<body style="background-image: url('https://lh3.googleusercontent.com/proxy/dlHL4YugAB8RlJxBxbrQTo5DJzjudODLDrY8rd6K9nVAyoJZntS0jbAEqqfEtsQIVz9ANZBXulHHAou5FjsVT42t-pYG93gaUzfz-pZwiysQnBHalzbvTOuwJw_lcKzsJ3vkzr56_UH21svOB1ODo6a7vUI2nQ')">
+<body>
+
+<div style="background-image: url('img/home1.jpg'); background-size: 100% 100%; height:750px; width:100%">
 <nav th:replace="layouts :: navbar"></nav>
 
 
 <div class="container" style="margin-top: 100px; font-weight: 600">
+
     <div class="col-md-10">
     <table class='table borderless'>
 <!--        <thead>-->
@@ -18,10 +21,10 @@
         <tbody>
 
         <tr th:each="aBook : ${books}">
-            <td th:text="${aBook.id}"></td>
+            <td hidden th:text="${aBook.id}"></td>
             <td>
 <!--                <canvas id="viewport" width="40px" height="50px">-->
-                <img src="https://donrheem.com/wp-content/uploads/2016/11/Book-Placeholder.png" style="width: 40px; height:50px">
+                <img th:src="${aBook.fileUrl != null ? aBook.fileUrl : 'https://www.meme-arsenal.com/memes/0a224655572b441f81d8fb7e2ecb61ed.jpg'}" style="width: 40px; height:50px">
 <!--                </canvas>-->
             </td>
 
@@ -29,23 +32,23 @@
             <td th:text="${aBook.author.fullName}"></td>
             <td th:text="${aBook.genre}"></td>
             <td th:text="${aBook.stage.displayValue}"></td>
-            <td th:number="${aBook.stars}" style="font-family: 'FontAwesome'; font-weight: normal; color:#DCDCDC">
+            <td th:number="${aBook.stars}" style="font-family: 'FontAwesome'; font-weight: normal; color:#DCDCDC;">
 
                 <div th:switch = "${aBook.stars}">
-                    <span style="color:yellow" th:case="5">
+                    <span style="color:rgb(255, 215, 0)" th:case="5">
                         <i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i>
                     </span>
                     <span th:case="4">
-                        <i style="color:yellow" class="fal fa-star"></i><i style="color:yellow" class="fal fa-star"></i><i style="color:yellow" class="fal fa-star"></i><i style="color:yellow" class="fal fa-star"></i><i class="fal fa-star"></i>
+                        <i style="color:rgb(255, 215, 0)" class="fal fa-star"></i><i style="color:rgb(255, 215, 0)" class="fal fa-star"></i><i style="color:rgb(255, 215, 0)" class="fal fa-star"></i><i style="color:rgb(255, 215, 0)" class="fal fa-star"></i><i class="fal fa-star"></i>
                     </span>
                     <span th:case="3">
-                        <i style="color:yellow" class="fal fa-star"></i><i style="color:yellow" class="fal fa-star"></i><i style="color:yellow"  class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i>
+                        <i style="color:rgb(255, 215, 0)" class="fal fa-star"></i><i style="color:rgb(255, 215, 0)" class="fal fa-star"></i><i style="color:rgb(255, 215, 0)"  class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i>
                     </span>
                     <span th:case="2">
-                        <i style="color:yellow" class="fal fa-star"></i><i style="color:yellow" class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i>
+                        <i style="color:rgb(255, 215, 0)" class="fal fa-star"></i><i style="color:rgb(255, 215, 0)" class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i>
                     </span>
                     <span th:case="1">
-                        <i style="color:yellow" class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i>
+                        <i style="color:rgb(255, 215, 0)" class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i>
                     </span>
                     <span style="color:#DCDCDC" th:case="*">
                         <i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i>
@@ -53,9 +56,9 @@
                 </div>
 
             </td>
-            <td><a th:href="@{/books/edit/{id}(id=${aBook.id})}"> <button type="submit" class="btn btn-default"><i class="fas fa-edit fa-lg" style="font-family: 'FontAwesome'; font-weight: normal; color:blue"></i></button></a></td>
+            <td><a th:href="@{/books/edit/{id}(id=${aBook.id})}"> <button type="submit" class="btn btn-default"><i class="fas fa-edit fa-lg" style="font-family: 'FontAwesome'; font-weight: normal; color:purple"></i></button></a></td>
             <td><a th:href="@{/books/delete/{id}(id=${aBook.id})}">
-                <button type="submit" class="btn btn-default"><i class="fas fa-trash fa-lg" style="font-family: 'FontAwesome'; font-weight: normal; color:black"></i></button>
+                <button type="submit" class="btn btn-default"><i class="fas fa-trash fa-lg" style="font-family: 'FontAwesome'; font-weight: normal; color:gray"></i></button>
                 </a>
             </td>
         </tr>
@@ -67,4 +70,5 @@
 </div>
 <!--<script type="text/javascript" th:src="@{/js/stars.js}"></script>-->
 <!--<script type="text/javascript" th:src="@{/js/picture.js}"></script>-->
+</div>
 </body>

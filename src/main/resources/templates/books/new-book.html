@@ -3,18 +3,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="layouts :: header"></head>
-<body style="background-image:url('https://www.wallpapertip.com/wmimgs/7-79039_twin-peaks-wallpaper-iphone-x.jpg')">
+<body>
 
+<div style="background-image: url('/img/addBook.png'); background-size: 100% 100%; height:754px; width:100%">
 
 <nav th:replace="layouts :: navbar"></nav>
 
-<div class="container" style="position:fixed; bottom:70%; top:20%; left:35%; right:30%;
+<div class="container" style="position:fixed; bottom:65%; top:20%; left:25%; right:60%;
 ">
 
 
-    <form action="/books/save" th:object="${book}" method="POST">
+    <form action="/books/save" th:object="${book}" method="POST" enctype="multipart/form-data">
 <!--        <input type="text" placeholder="Title" th:field="${book.title}"><br><br>-->
-        <input style="border-radius: 7px; height:35px" type="file" placeholder="Upload a book cover" th:field="${book.cover}"><br><br>
+        <input style="border-radius: 7px; height:35px" type="file" placeholder="Upload a book cover" th:field="${book.file}"><br><br>
         <input style="border-radius: 7px; height:35px" type="text" placeholder="Title" name="title"><br><br>
 <!--        <input type="text" th:field="${book.author.fullName}" placeholder="Author Name"><br><br>-->
         <input style="border-radius: 7px; height:35px" type="text" name="author.fullName" placeholder="Author Name"><br><br>
@@ -33,8 +34,7 @@
         <button class="btn btn-success" type="submit">Add book</button>
     </form>
 </div>
-
+</div>
 <script type="text/javascript" th:src="@{/js/stars.js}"></script>
-
 </body>
 </html>

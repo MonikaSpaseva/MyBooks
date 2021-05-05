@@ -3,17 +3,21 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="layouts :: header"></head>
-<body style="background-image:url('https://wallpapercave.com/wp/wp4982504.jpg')">
+<body>
+<div style="background-image: url('/img/addBook.png'); background-size: 100% 100%; height:754px; width:100%">
 
 
 <nav th:replace="layouts :: navbar"></nav>
 
-<div class="container" style="position:fixed; bottom:70%; top:20%; left:40%; right:20%;
+<div class="container" style="position:fixed; bottom:70%; top:25%; left:25%; right:60%;
 ">
 
 
-    <form action="/books/update" th:object="${book}" method="POST">
+    <form action="/books/update" th:object="${book}" method="POST" enctype="multipart/form-data">
+
         <input hidden th:field="${book.id}">
+        <input style="border-radius: 7px; height:35px" type="file" placeholder="Upload a book cover" th:field="${book.file}"><br><br>
+
         <input style="border-radius: 7px; height:35px";   type="text" placeholder="Title"  th:field="${book.title}"><br><br>
         <input style="border-radius: 7px; height:35px";  type="text" th:field="${book.author.fullName}" placeholder="Author Name"><br><br>
         <input style="border-radius: 7px; height:35px";  type="text" placeholder="Genre" th:field="${book.genre}"><br><br>
@@ -40,6 +44,6 @@
 </div>
 
 <script type="text/javascript" th:src="@{/js/stars.js}"></script>
-
+</div>
 </body>
 </html>

@@ -1,9 +1,11 @@
 package monika.projectmanagement.controllers;
 
+import monika.projectmanagement.dto.CreateBookDto;
 import monika.projectmanagement.entity.Author;
 import monika.projectmanagement.entity.Book;
 import monika.projectmanagement.repository.AuthorRepo;
 import monika.projectmanagement.repository.BookRepository;
+import monika.projectmanagement.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -22,23 +25,23 @@ public class BookController {
     BookRepository bookRepository;
 
     @Autowired
+    StorageService storageService;
+
+    @Autowired
     AuthorRepo authorRepo;
 
 
     @GetMapping("/new")
     public String displayBookForm(Model model) {
 
-        Book aBook = new Book();
+        CreateBookDto aBook = new CreateBookDto();
         model.addAttribute("book", aBook);
 
         return "books/new-book";
     }
 
     @PostMapping("/save")
-    public String createProject(Book book, Model model) {
-        // find an author by given full_name
-        // if author exists add the current book to his list of books and save the entity
-        // if author does not exist add both the author and the book
+    public String createProject(CreateBookDto book, Model model) throws IOException {
 
         String authorFullName = book.getAuthor().getFullName();
         List<Author> allAuthors = authorRepo.findAll();
@@ -51,6 +54,9 @@ public class BookController {
             }
         }
 
+        String fileName = storageService.saveFile(book.getFile());
+        book.setFileUrl("/files/" + fileName);
+
         if (existingAuthor != null) {
             book.setAuthor(existingAuthor);
             existingAuthor.addBook(book);
@@ -62,7 +68,6 @@ public class BookController {
         }
 
 
-
         return "redirect:/books/new";
     }
 
@@ -70,14 +75,35 @@ public class BookController {
     public String editBook(@PathVariable Long id, Model model) {
 
         Book book = bookRepository.findById(id).orElse(null);
-        model.addAttribute("book", book);
+        CreateBookDto createBookDto = new CreateBookDto();
+        assert book != null;
+        createBookDto.setFileUrl("/files/" + book.getFileUrl());
+        createBookDto.setId(book.getId());
+        createBookDto.setTitle(book.getTitle());
+        createBookDto.setAuthor(book.getAuthor());
+        createBookDto.setGenre(book.getGenre());
+        createBookDto.setStage(book.getStage());
+        createBookDto.setStars(book.getStars());
+
+        model.addAttribute("book", createBookDto);
 
         return "books/edit-book";
     }
 
     @PostMapping("/update")
-    public String updateBook(Book book) {
-        bookRepository.save(book);
+    public String updateBook(CreateBookDto book) throws IOException {
+
+        String fileName = storageService.saveFile(book.getFile());
+        Book bookLoadedfromDb  = bookRepository.findById(book.getId()).orElse(null);
+        bookLoadedfromDb.setId(book.getId());
+        bookLoadedfromDb.setTitle(book.getTitle());
+        bookLoadedfromDb.setAuthor(book.getAuthor());
+        bookLoadedfromDb.setGenre(book.getGenre());
+        bookLoadedfromDb.setStage(book.getStage());
+        bookLoadedfromDb.setStars(book.getStars());
+        bookLoadedfromDb.setFileUrl("/files/" + fileName);
+
+        bookRepository.save(bookLoadedfromDb);
 
         return "redirect:/";
     }
