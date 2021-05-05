@@ -22,7 +22,7 @@
         <tr th:each="aBook : ${books}">
             <td>
                 <!--                <canvas id="viewport" width="40px" height="50px">-->
-                <img th:src="${aBook.fileUrl != null ? aBook.fileUrl : 'https://i.pinimg.com/236x/dc/e7/85/dce785f0a70eedad13da67639ae6c5e7--the-notebook-code-geass-fondos.jpg'}" style="width: 40px; height:50px">
+                <img th:src="${aBook.fileUrl != null ? aBook.fileUrl : 'https://images-na.ssl-images-amazon.com/images/I/41IqSM+Dh2L._SX331_BO1,204,203,200_.jpg'}" style="width: 40px; height:50px">
                 <!--                </canvas>-->
             </td>
             <td th:text="${aBook.title}"></td>
@@ -31,20 +31,20 @@
             <td th:number="${aBook.stars}" style="font-family: 'FontAwesome'; font-weight: normal; color:#DCDCDC">
 
                 <div th:switch = "${aBook.stars}">
-                    <span style="color:yellow" th:case="5">
+                    <span style="color:rgb(255, 215, 0)" th:case="5">
                         <i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i>
                     </span>
                     <span th:case="4">
-                        <i style="color:yellow" class="fal fa-star"></i><i style="color:yellow" class="fal fa-star"></i><i style="color:yellow" class="fal fa-star"></i><i style="color:yellow" class="fal fa-star"></i><i class="fal fa-star"></i>
+                        <i style="color:rgb(255, 215, 0)" class="fal fa-star"></i><i style="color:rgb(255, 215, 0)" class="fal fa-star"></i><i style="color:rgb(255, 215, 0)" class="fal fa-star"></i><i style="color:rgb(255, 215, 0)" class="fal fa-star"></i><i class="fal fa-star"></i>
                     </span>
                     <span th:case="3">
-                        <i style="color:yellow" class="fal fa-star"></i><i style="color:yellow" class="fal fa-star"></i><i style="color:yellow"  class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i>
+                        <i style="color:rgb(255, 215, 0)" class="fal fa-star"></i><i style="color:rgb(255, 215, 0)" class="fal fa-star"></i><i style="color:rgb(255, 215, 0)"  class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i>
                     </span>
                     <span th:case="2">
-                        <i style="color:yellow" class="fal fa-star"></i><i style="color:yellow" class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i>
+                        <i style="color:rgb(255, 215, 0)" class="fal fa-star"></i><i style="color:rgb(255, 215, 0)" class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i>
                     </span>
                     <span th:case="1">
-                        <i style="color:yellow" class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i>
+                        <i style="color:rgb(255, 215, 0)" class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i>
                     </span>
                     <!--                    <span style="color:#DCDCDC" th:null>-->
                     <!--                        <i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i><i class="fal fa-star"></i>-->

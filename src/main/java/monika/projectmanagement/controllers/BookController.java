@@ -54,8 +54,11 @@ public class BookController {
             }
         }
 
-        String fileName = storageService.saveFile(book.getFile());
-        book.setFileUrl("/files/" + fileName);
+        if (!book.getFile().isEmpty()) {
+            String fileName = storageService.saveFile(book.getFile());
+            book.setFileUrl("/files/" + fileName);
+        }
+
 
         if (existingAuthor != null) {
             book.setAuthor(existingAuthor);
